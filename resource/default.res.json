@@ -1,0 +1,50 @@
+{
+	"groups": [
+		{
+			"keys": "description_json,mbg1_jpg,mbg22_jpg,mbg33_jpg,logo_png,Yin_png",
+			"name": "preload"
+		}
+	],
+	"resources": [
+		{
+			"url": "assets/bg.jpg",
+			"type": "image",
+			"name": "bg_jpg"
+		},
+		{
+			"url": "assets/egret_icon.png",
+			"type": "image",
+			"name": "egret_icon_png"
+		},
+		{
+			"url": "config/description.json",
+			"type": "json",
+			"name": "description_json"
+		},
+		{
+			"url": "assets/mbg1.jpg",
+			"type": "image",
+			"name": "mbg1_jpg"
+		},
+		{
+			"url": "assets/mbg33.jpg",
+			"type": "image",
+			"name": "mbg33_jpg"
+		},
+		{
+			"url": "assets/mbg22.jpg",
+			"type": "image",
+			"name": "mbg22_jpg"
+		},
+		{
+			"url": "assets/logo.png",
+			"type": "image",
+			"name": "logo_png"
+		},
+		{
+			"url": "assets/Yin.png",
+			"type": "image",
+			"name": "Yin_png"
+		}
+	]
+}
