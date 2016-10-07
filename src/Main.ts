@@ -265,6 +265,82 @@ class Main extends egret.DisplayObjectContainer {
         poem2.x = stageW - poem2.width - 10;
         poem2.y = stageH - poem2.height - 10;
 
+        var luopan:egret.Bitmap = this.createBitmapByName("luopan_png");
+        p2Container.addChild(luopan);
+       
+        luopan.anchorOffsetX = 301;
+        luopan.anchorOffsetY = 325;
+        luopan.x = 0;
+        luopan.y = 0;
+        
+        var xinggebg = new egret.Shape();
+        xinggebg.graphics.beginFill(0x000000, 0.5);
+        xinggebg.graphics.drawRect(0, 0, stageW, 265);
+        xinggebg.graphics.endFill();
+        xinggebg.scaleX = 0.9;
+        xinggebg.x = 30;
+        xinggebg.y = 325;
+        p2Container.addChild(xinggebg);
+
+
+        var textxingge = new egret.TextField();
+        p2Container.addChild(textxingge);
+        textxingge.width = stageW - 80;
+        textxingge.x = 46;
+        textxingge.y = 360;
+        textxingge.height = 245;
+        textxingge.textColor = 0xffffff;
+        textxingge.size = 30;
+        textxingge.fontFamily = "Microsoft YaHei";
+        textxingge.textAlign = "left";
+        textxingge.text = "   关于性格，怎么说呢。拿两个关键字就是“外冷内热”和“多重性格”。取决于自己，有时候不善于和陌生人打交道。但在某种情况下的我可能并不会这样，反而会很善于去交流。比较随和，对于长时间没有联系过的圈子有种小抵触，自我感觉很难再融进去啊。";
+
+
+        var xingge:egret.Bitmap = this.createBitmapByName("xingge_png");
+        p2Container.addChild(xingge);
+  
+
+        xingge.x = stageW/1.5;
+        xingge.y = stageH/6;
+
+     
+        var tedianbg = new egret.Shape();
+        tedianbg.graphics.beginFill(0x000000, 0.5);
+        tedianbg.graphics.drawRect(0, 0, stageW, 285);
+        tedianbg.graphics.endFill();
+        tedianbg.scaleX = 0.9;
+        tedianbg.x = 30;
+        tedianbg.y = 815;
+        p2Container.addChild(tedianbg);
+
+        var texttedian = new egret.TextField();
+        p2Container.addChild(texttedian);
+        texttedian.width = stageW - 88;
+        texttedian.x = 46;
+        texttedian.y = 825;
+        texttedian.height = 285;
+        texttedian.textColor = 0xffffff;
+        texttedian.size = 30;
+        texttedian.fontFamily = "Microsoft YaHei";
+        texttedian.textAlign = "left";
+        texttedian.text ="    每次一说有什么特长之类的,就感觉比较尴尬。自认为我就是那种九年义务教务流水线式组装出来的学生。也是一直让我觉得比较后悔，没在之前的日子里对自己未来的路多做一些探索。\n    探索是必要的，毕竟不做不知理。有时候我也问自己到底有什么特点，但试着做一些东西出来之后，回过头总结才看到这就是我。";
+
+
+
+
+
+        var tedian:egret.Bitmap = this.createBitmapByName("tedian_png");
+        p2Container.addChild(tedian);
+  
+
+        tedian.x = 0;
+        tedian.y = stageH/1.75;
+        
+
+
+     
+
+       
 
 
 
@@ -273,6 +349,51 @@ class Main extends egret.DisplayObjectContainer {
         p3Container.addChild(bg3);
         bg3.width = stageW;
         bg3.height = stageH;
+        
+      
+
+
+
+        var zijibg = new egret.Shape();
+        zijibg.graphics.beginFill(0x000000, 0.5);
+        zijibg.graphics.drawRect(0, 0, stageW, 345);
+        zijibg.graphics.endFill();
+        zijibg.scaleX = 0.9;
+        zijibg.x = 30;
+        zijibg.y = 150;
+        p3Container.addChild(zijibg);
+        
+
+        var textziji = new egret.TextField();
+        p3Container.addChild(textziji);
+        textziji.width = stageW - 90;
+        textziji.x = 46;
+        textziji.y = 190;
+        textziji.height = 345;
+        textziji.textColor = 0xffffff;
+        textziji.size = 30;
+        textziji.fontFamily = "Microsoft YaHei";
+        textziji.textAlign = "left";
+        textziji.text ="    关于自己，再说两句，有想法，但有时候行动力不高，自信什么的有点不足。\n    但至少关于我所爱的事物，不论他人说些什么，喜欢或者是讨厌。理解还是不明所以。我都会一直遵循我内心的想法，将自己融入到一个个有共同感触的人们里，然后用我的经历的种种和学到的知识来创造一个让人们引发共鸣的东西。是我一直坚守的纲要。";
+
+
+
+        var ziji:egret.Bitmap = this.createBitmapByName("ziji_png");
+        p3Container.addChild(ziji);
+        ziji.x = stageW/2 - ziji.width/2;
+        ziji.y = 40;
+        
+
+
+        var choice:egret.Bitmap = this.createBitmapByName("choice_png");
+        p3Container.addChild(choice);
+  
+        choice.anchorOffsetX = 218;
+        choice.anchorOffsetY = 209;
+        choice.scaleX = 1.55;
+        choice.scaleY = 1.55;
+        choice.x = stageW/2;
+        choice.y = stageH - choice.height/2;
 
         var poem3 = new egret.TextField();
         p3Container.addChild(poem3);
@@ -286,9 +407,10 @@ class Main extends egret.DisplayObjectContainer {
         poem3.stroke = 1;
         poem3.x = stageW - poem3.width - 10;
         poem3.y = stageH - poem3.height - 10;
+       
+    
 
-
-
+    
 /*
        bgContainer.addChild(p1Container);
        p1Container.x = 0;
@@ -329,8 +451,11 @@ class Main extends egret.DisplayObjectContainer {
          
             var rect: egret.Rectangle = this.scrollRect;
             MoveDistance = init_TouchPointY - e.stageY;
+            if(MoveDistance != 0){
             rect.y = (init_StagePointY + MoveDistance);
             this.scrollRect = rect;
+            }
+            
         }
 
 
@@ -345,12 +470,12 @@ class Main extends egret.DisplayObjectContainer {
                 rect.y = init_StagePointY + stageH;
                 this.scrollRect = rect;
                
-            }else if((MoveDistance <= (-(this.stage.stageHeight/3))) && init_StagePointY!=0) {//如果移动距离超了-1/3个高度，并且没到第一页，往上滑一页
+            }else if((MoveDistance <= (-(this.stage.stageHeight/3))) && init_StagePointY!=0 && MoveDistance != 0) {//如果移动距离超了-1/3个高度，并且没到第一页，往上滑一页
 
                 rect.y = init_StagePointY - stageH;
                 this.scrollRect = rect;
 
-            } else {
+            } else{
 
                 rect.y = init_StagePointY;
                 this.scrollRect = rect;

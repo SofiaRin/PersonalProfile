@@ -1,21 +1,11 @@
 {
 	"groups": [
 		{
-			"keys": "description_json,mbg1_jpg,mbg22_jpg,mbg33_jpg,logo_png,Yin_png",
+			"keys": "description_json,mbg1_jpg,mbg22_jpg,mbg33_jpg,logo_png,Yin_png,luopan_png,choice_png,xingge_png,tedian_png,ziji_png",
 			"name": "preload"
 		}
 	],
 	"resources": [
-		{
-			"url": "assets/bg.jpg",
-			"type": "image",
-			"name": "bg_jpg"
-		},
-		{
-			"url": "assets/egret_icon.png",
-			"type": "image",
-			"name": "egret_icon_png"
-		},
 		{
 			"url": "config/description.json",
 			"type": "json",
@@ -45,6 +35,31 @@
 			"url": "assets/Yin.png",
 			"type": "image",
 			"name": "Yin_png"
+		},
+		{
+			"url": "assets/luopan.png",
+			"type": "image",
+			"name": "luopan_png"
+		},
+		{
+			"url": "assets/choice.png",
+			"type": "image",
+			"name": "choice_png"
+		},
+		{
+			"url": "assets/tedian.png",
+			"type": "image",
+			"name": "tedian_png"
+		},
+		{
+			"url": "assets/xingge.png",
+			"type": "image",
+			"name": "xingge_png"
+		},
+		{
+			"url": "assets/ziji.png",
+			"type": "image",
+			"name": "ziji_png"
 		}
 	]
 }
