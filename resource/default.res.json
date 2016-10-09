@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "description_json,mbg1_jpg,mbg22_jpg,mbg33_jpg,logo_png,Yin_png,luopan_png,choice_png,xingge_png,tedian_png,ziji_png",
+			"keys": "description_json,mbg1_jpg,mbg22_jpg,mbg33_jpg,logo_png,Yin_png,choice_png,tedian_png,xingge_png,ziji_png,luopan2_png",
 			"name": "preload"
 		}
 	],
@@ -37,11 +37,6 @@
 			"name": "Yin_png"
 		},
 		{
-			"url": "assets/luopan.png",
-			"type": "image",
-			"name": "luopan_png"
-		},
-		{
 			"url": "assets/choice.png",
 			"type": "image",
 			"name": "choice_png"
@@ -60,6 +55,11 @@
 			"url": "assets/ziji.png",
 			"type": "image",
 			"name": "ziji_png"
+		},
+		{
+			"url": "assets/luopan2.png",
+			"type": "image",
+			"name": "luopan2_png"
 		}
 	]
 }
