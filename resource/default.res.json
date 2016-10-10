@@ -1,7 +1,7 @@
 {
 	"groups": [
 		{
-			"keys": "description_json,mbg1_jpg,mbg22_jpg,mbg33_jpg,logo_png,Yin_png,choice_png,tedian_png,xingge_png,ziji_png,luopan2_png",
+			"keys": "description_json,mbg1_jpg,mbg22_jpg,mbg33_jpg,logo_png,Yin_png,choice_png,tedian_png,xingge_png,ziji_png,luopan2_png,torinouta_mp3",
 			"name": "preload"
 		}
 	],
@@ -60,6 +60,11 @@
 			"url": "assets/luopan2.png",
 			"type": "image",
 			"name": "luopan2_png"
+		},
+		{
+			"url": "assets/torinouta.mp3",
+			"type": "sound",
+			"name": "torinouta_mp3"
 		}
 	]
 }

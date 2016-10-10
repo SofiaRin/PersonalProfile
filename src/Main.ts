@@ -112,22 +112,24 @@ class Main extends egret.DisplayObjectContainer {
 
     private textfield:egret.TextField;
 
+
+
+
     /**
      * 创建游戏场景
      * Create a game scene
      */
     private createGameScene():void {
-        //var bgContainer = new egret.DisplayObjectContainer();
+
     
-        var p1Container = new egret.DisplayObjectContainer(); 
-        var p2Container = new egret.DisplayObjectContainer();
-        var p3Container = new egret.DisplayObjectContainer();
+        
 
         var stageW:number = this.stage.stageWidth;
         var stageH:number = this.stage.stageHeight;
-
-        //bgContainer.width = stageW;
-        //bgContainer.height = 3*stageH;
+    ///P1-P3容器声明，位置赋值
+        var p1Container = new egret.DisplayObjectContainer(); 
+        var p2Container = new egret.DisplayObjectContainer();
+        var p3Container = new egret.DisplayObjectContainer();
 
         this.addChild(p1Container);
         p1Container.width = stageW;
@@ -143,12 +145,22 @@ class Main extends egret.DisplayObjectContainer {
         p3Container.height = stageH;
         p3Container.y = 2*stageH;
 
+
+
+
+//page1 - start 
         var bg1:egret.Bitmap = this.createBitmapByName("mbg1_jpg");
         p1Container.addChild(bg1);
-        
         bg1.width = stageW;
         bg1.height = stageH;
         
+
+        var Mask1 = new egret.Shape();
+        Mask1.graphics.beginFill(0x000000, 0.5);
+        Mask1.graphics.drawRect(0, 0, stageW, 172);
+        Mask1.graphics.endFill();
+        Mask1.y = 396;
+        p1Container.addChild(Mask1);
 
 
         var Mask2 = new egret.Shape();
@@ -161,13 +173,6 @@ class Main extends egret.DisplayObjectContainer {
         Mask2move.wait(800);
         Mask2move.to({"alpha":0.45},1000);
        
-        var Mask1 = new egret.Shape();
-        Mask1.graphics.beginFill(0x000000, 0.5);
-        Mask1.graphics.drawRect(0, 0, stageW, 172);
-        Mask1.graphics.endFill();
-        Mask1.y = 396;
-        p1Container.addChild(Mask1);
-        
 
         var Mask3 = new egret.Shape();
         Mask3.graphics.beginFill(0x000000, 0.5);
@@ -183,7 +188,10 @@ class Main extends egret.DisplayObjectContainer {
         yin.scaleY = 0.55;
         yin.x = 25;
         yin.y = 18;
-
+        yin.alpha = 0;
+        var yinmove = egret.Tween.get(yin);
+        yinmove.wait(800);
+        yinmove.to({"alpha":1},1000);
 
         var icon:egret.Bitmap = this.createBitmapByName("logo_png");
         var iconrotat = 1;
@@ -197,15 +205,12 @@ class Main extends egret.DisplayObjectContainer {
          /// 根据当前模式调整旋转度数或缩放正弦基数形成相应动画
         icon.addEventListener( egret.Event.ENTER_FRAME, ( evt:egret.Event )=>{
 
-            
                /// 仅旋转
                     icon.rotation += iconrotat;
                 
         }, this );
 
-      
-     
-        
+
         var title = new egret.TextField();
         p1Container.addChild(title);
         title.alpha = 0;
@@ -222,7 +227,6 @@ class Main extends egret.DisplayObjectContainer {
         var titletw = egret.Tween.get(title);
         titletw.wait(800);
         titletw.to({"alpha":1},1000);
-
 
 
         var textfield = new egret.TextField();
@@ -243,25 +247,21 @@ class Main extends egret.DisplayObjectContainer {
         poem.alpha = 1;
         poem.textColor = 0xffffff;
         poem.textAlign = "center";
-        
         poem.text = "One sight";
         poem.size =24;
         poem.strokeColor = 0xdd31fc;
         poem.stroke = 1;
-        poem.x = stageW - poem.width - 10;
+        poem.x = stageW/2 - poem.width/2;
         poem.y = stageH - poem.height - 10;
      
 
 
    
-
-
-        //page2 - start 
+//page2 - start 
         var bg2:egret.Bitmap = this.createBitmapByName("mbg22_jpg");
         p2Container.addChild(bg2);
         bg2.width = stageW;
         bg2.height = stageH;
-        
         var twpoem = egret.Tween.get(poem2);
         var poem2 = new egret.TextField();
         p2Container.addChild(poem2);
@@ -273,15 +273,9 @@ class Main extends egret.DisplayObjectContainer {
         poem2.size =24;
         poem2.strokeColor = 0xc0b0ca;
         poem2.stroke = 1;
-        poem2.x = stageW - poem2.width - 10;
+        poem2.x = stageW/2 - poem2.width/2;
         poem2.y = stageH - poem2.height - 10;
-        var twpoem = egret.Tween.get(poem2);
-        if(currentpage == 2){
-
-            twpoem.to({"alpha":0.1},4000);
-
-        }
-
+      
 
 
         var luopan:egret.Bitmap = this.createBitmapByName("luopan2_png");
@@ -293,15 +287,13 @@ class Main extends egret.DisplayObjectContainer {
         luopan.x = stageW/2;
         luopan.y = stageH/2;
         
-        var twluopan = egret.Tween.get(luopan);
-       
-             
+              
         luopan.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
             launchTween();
         }, this );
 
         
-        function launchTween(){
+        function launchTween() {
         /*** 本示例关键代码段开始 ***/
         var funcChange = ():void=>{
             luopan.rotation += 6 * iDirection;
@@ -310,12 +302,8 @@ class Main extends egret.DisplayObjectContainer {
         egret.Tween.get( luopan, { onChange:funcChange, onChangeObj:this } )
             .to( {}, 300, egret.Ease.sineIn );
         /*** 本示例关键代码段结束 ***/
-        
-      
-    }
+        }
          
-
-
         var xinggebg = new egret.Shape();
         xinggebg.graphics.beginFill(0x000000, 0.5);
         xinggebg.graphics.drawRect(0, 0, stageW, 300);
@@ -341,9 +329,6 @@ class Main extends egret.DisplayObjectContainer {
         textxingge.text = "   关于性格，怎么说呢。拿两个关键字就是“外冷内热”和“多重性格”。取决于自己，有时候不善于和陌生人打交道。但在某种情况下的我可能并不会这样，反而会很善于去交流。比较随和，对于长时间没有联系过的圈子有种小抵触，自我感觉很难再融进去啊。";
 
 
-      
-
-     
         var tedianbg = new egret.Shape();
         tedianbg.graphics.beginFill(0x000000, 0.5);
         tedianbg.graphics.drawRect(0, 0, stageW, 300);
@@ -353,6 +338,7 @@ class Main extends egret.DisplayObjectContainer {
         tedianbg.y = 396;
         tedianbg.alpha = 0;
         p2Container.addChild(tedianbg);
+
 
         var texttedian = new egret.TextField();
         p2Container.addChild(texttedian);
@@ -366,9 +352,6 @@ class Main extends egret.DisplayObjectContainer {
         texttedian.fontFamily = "Microsoft YaHei";
         texttedian.textAlign = "left";
         texttedian.text ="    自认为我就是那种九年义务教务流水线式组装出来的学生。也是一直让我觉得比较后悔，没在之前的日子里对自己未来的路多做一些探索。\n    探索是必要的，毕竟不做不知理。有时候我也问自己到底有什么特点，但试着做一些东西出来之后，回过头总结才看到这就是我。";
-
-
-
 
 
         var tedian:egret.Bitmap = this.createBitmapByName("tedian_png");
@@ -385,50 +368,37 @@ class Main extends egret.DisplayObjectContainer {
         xingge.scaleY = 1.2;
         xingge.x = stageW/2 - 30;
         xingge.y = stageH/2 - tedian.height*1.2;
-        
-          p2Container.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
+
+        p2Container.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
             p2launchTween();
         }, this );
 
-        
-        function p2launchTween(){
+        function p2launchTween() {
 
-     
-         
-        
-     egret.Tween.get( tedian, {} )
+          egret.Tween.get( tedian, {} )
             .to( {x:35}, 600, egret.Ease.sineIn ).to({y:stageH/1.37},400);
-     egret.Tween.get( xingge, {} )
+          egret.Tween.get( xingge, {} )
             .to( {x:470}, 600, egret.Ease.sineIn ).to({y:stageH/17},400);
-       
-    egret.Tween.get( texttedian, {} )
+          egret.Tween.get( texttedian, {} )
             .to( {"alpha":1}, 600, egret.Ease.sineIn );
-     egret.Tween.get( textxingge, {} )
+          egret.Tween.get( textxingge, {} )
             .to( {"alpha":1}, 600, egret.Ease.sineIn );
-    egret.Tween.get( tedianbg, {} ).to({"alpha":1},400)
+          egret.Tween.get( tedianbg, {} ).to({"alpha":1},400)
             .to( {y:785}, 500, egret.Ease.sineIn );
-    egret.Tween.get( xinggebg, {} ).to({"alpha":1},400)
+          egret.Tween.get( xinggebg, {} ).to({"alpha":1},400)
             .to( {y:51}, 500, egret.Ease.sineIn );
-    }
+       }
 
       
 
 
-     
-
-       
-
-
-
+    
         //page3 - start
         var bg3:egret.Bitmap = this.createBitmapByName("mbg33_jpg")
         p3Container.addChild(bg3);
         bg3.width = stageW;
         bg3.height = stageH;
         
-      
-
-
 
         var zijibg = new egret.Shape();
         zijibg.graphics.beginFill(0x000000, 0.5);
@@ -455,13 +425,11 @@ class Main extends egret.DisplayObjectContainer {
         textziji.text ="    关于自己，再说两句，有想法，但有时候行动力不高，自信什么的有点不足。\n    但至少关于我所爱的事物，不论他人说些什么，喜欢或者是讨厌。理解还是不明所以。我都会一直遵循我内心的想法，将自己融入到一个个有共同感触的人们里，然后用我的经历的种种和学到的知识来创造一个让人们引发共鸣的东西。是我一直坚守的纲要。";
 
 
-
         var ziji:egret.Bitmap = this.createBitmapByName("ziji_png");
         p3Container.addChild(ziji);
         ziji.x = stageW/2 - ziji.width/2;
         ziji.y = 800;
         
-
 
         var choice:egret.Bitmap = this.createBitmapByName("choice_png");
         p3Container.addChild(choice);
@@ -473,49 +441,40 @@ class Main extends egret.DisplayObjectContainer {
         choice.x = stageW/2;
         choice.y = stageH/1.3;
         
-
         p3Container.addEventListener( egret.TouchEvent.TOUCH_TAP, ()=>{
             p3launchTween();
         }, this );
 
         
-        function p3launchTween(){
+        function p3launchTween() {
         /*** 本示例关键代码段开始 ***/
-     
+           var funcChange = ():void=>{
+            zijibg.alpha = 0.5;
+        }
          
-        
         egret.Tween.get( ziji, {} )
-            .to( {y:40}, 1000, egret.Ease.sineIn );
+            .to( {y:40}, 600, egret.Ease.sineIn );
         egret.Tween.get( textziji, {} )
-            .to( {y:190}, 1200, egret.Ease.sineIn ).to({"alpha":1},600);
-        egret.Tween.get( zijibg, {} ).to({y:150},600)
-            .to( {"alpha" :1}, 800, egret.Ease.sineIn );
+            .to( {y:190}, 500, egret.Ease.sineIn ).to({"alpha":1},1000);
+        egret.Tween.get( zijibg, {onChange:funcChange,onChangeObj:this} ).to({y:150},600);
        
-      
-    }
+        }
         
    
-
-        
- 
-        
-
         var poem3 = new egret.TextField();
         p3Container.addChild(poem3);
         poem3.alpha = 1;
         poem3.textColor = 0xffffff;
         poem3.textAlign = "center";
-        
         poem3.text = "But lonely one";
         poem3.size =24;
         poem3.strokeColor = 0x39a29e;
         poem3.stroke = 1;
-        poem3.x = stageW - poem3.width - 10;
+        poem3.x = stageW/2 - poem3.width/2;
         poem3.y = stageH - poem3.height - 10;
        
     
 
-    
 
 //页面滑动功能
 
@@ -527,7 +486,7 @@ class Main extends egret.DisplayObjectContainer {
         var init_StagePointY:number = 0;//起始Stage点
         var MoveDistance:number = 0;//移动距离
         var mark:number = 0;
-        var currentpage:number = 1;
+        
 
         this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, startScroll, this);   //监听事件1
         
@@ -536,7 +495,6 @@ class Main extends egret.DisplayObjectContainer {
 
                 this.scrollRect.y = init_StagePointY;  //每次滑动都卡主一个stage的高度
             }
-
 
             mark = e.stageY;
             init_TouchPointY = e.stageY;
@@ -570,13 +528,13 @@ class Main extends egret.DisplayObjectContainer {
                  
                 rect.y = init_StagePointY + stageH;
                 this.scrollRect = rect;
-                currentpage++;
+              
                
             }else if((MoveDistance <= (-stageH/3)) && init_StagePointY!=0 && origin != 0) {//如果移动距离超了-1/3个高度，并且没到第一页，往上滑一页
 
                 rect.y = init_StagePointY - stageH;
                 this.scrollRect = rect;
-                currentpage--;
+                
             } else{
 
                 rect.y = init_StagePointY;
@@ -592,7 +550,8 @@ class Main extends egret.DisplayObjectContainer {
         //根据name关键字，异步获取一个json配置文件，name属性请参考resources/resource.json配置文件的内容。
         // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json.
         RES.getResAsync("description_json", this.startAnimation, this)
-        
+        var sound:egret.Sound = RES.getRes("torinouta_mp3");
+        var channel:egret.SoundChannel = sound.play(0,-2);
     }
 
     /**
@@ -652,6 +611,8 @@ class Main extends egret.DisplayObjectContainer {
     private changeDescription(textfield:egret.TextField, textFlow:Array<egret.ITextElement>):void {
         textfield.textFlow = textFlow;
     }
+
+    
 }
 
 

@@ -101,14 +101,12 @@ var Main = (function (_super) {
      * Create a game scene
      */
     p.createGameScene = function () {
-        //var bgContainer = new egret.DisplayObjectContainer();
+        var stageW = this.stage.stageWidth;
+        var stageH = this.stage.stageHeight;
+        ///P1-P3容器声明，位置赋值
         var p1Container = new egret.DisplayObjectContainer();
         var p2Container = new egret.DisplayObjectContainer();
         var p3Container = new egret.DisplayObjectContainer();
-        var stageW = this.stage.stageWidth;
-        var stageH = this.stage.stageHeight;
-        //bgContainer.width = stageW;
-        //bgContainer.height = 3*stageH;
         this.addChild(p1Container);
         p1Container.width = stageW;
         p1Container.height = stageH;
@@ -120,10 +118,17 @@ var Main = (function (_super) {
         p3Container.width = stageW;
         p3Container.height = stageH;
         p3Container.y = 2 * stageH;
+        //page1 - start 
         var bg1 = this.createBitmapByName("mbg1_jpg");
         p1Container.addChild(bg1);
         bg1.width = stageW;
         bg1.height = stageH;
+        var Mask1 = new egret.Shape();
+        Mask1.graphics.beginFill(0x000000, 0.5);
+        Mask1.graphics.drawRect(0, 0, stageW, 172);
+        Mask1.graphics.endFill();
+        Mask1.y = 396;
+        p1Container.addChild(Mask1);
         var Mask2 = new egret.Shape();
         Mask2.graphics.beginFill(0x000000, 1);
         Mask2.graphics.drawRect(0, 0, stageW, 172);
@@ -133,12 +138,6 @@ var Main = (function (_super) {
         var Mask2move = egret.Tween.get(Mask2);
         Mask2move.wait(800);
         Mask2move.to({ "alpha": 0.45 }, 1000);
-        var Mask1 = new egret.Shape();
-        Mask1.graphics.beginFill(0x000000, 0.5);
-        Mask1.graphics.drawRect(0, 0, stageW, 172);
-        Mask1.graphics.endFill();
-        Mask1.y = 396;
-        p1Container.addChild(Mask1);
         var Mask3 = new egret.Shape();
         Mask3.graphics.beginFill(0x000000, 0.5);
         Mask3.graphics.drawRect(0, 0, stageW, 172);
@@ -151,6 +150,10 @@ var Main = (function (_super) {
         yin.scaleY = 0.55;
         yin.x = 25;
         yin.y = 18;
+        yin.alpha = 0;
+        var yinmove = egret.Tween.get(yin);
+        yinmove.wait(800);
+        yinmove.to({ "alpha": 1 }, 1000);
         var icon = this.createBitmapByName("logo_png");
         var iconrotat = 1;
         p1Container.addChild(icon);
@@ -201,7 +204,7 @@ var Main = (function (_super) {
         poem.size = 24;
         poem.strokeColor = 0xdd31fc;
         poem.stroke = 1;
-        poem.x = stageW - poem.width - 10;
+        poem.x = stageW / 2 - poem.width / 2;
         poem.y = stageH - poem.height - 10;
         //page2 - start 
         var bg2 = this.createBitmapByName("mbg22_jpg");
@@ -219,12 +222,8 @@ var Main = (function (_super) {
         poem2.size = 24;
         poem2.strokeColor = 0xc0b0ca;
         poem2.stroke = 1;
-        poem2.x = stageW - poem2.width - 10;
+        poem2.x = stageW / 2 - poem2.width / 2;
         poem2.y = stageH - poem2.height - 10;
-        var twpoem = egret.Tween.get(poem2);
-        if (currentpage == 2) {
-            twpoem.to({ "alpha": 0.1 }, 4000);
-        }
         var luopan = this.createBitmapByName("luopan2_png");
         p2Container.addChild(luopan);
         luopan.touchEnabled = true;
@@ -233,7 +232,6 @@ var Main = (function (_super) {
         luopan.alpha = 0.3;
         luopan.x = stageW / 2;
         luopan.y = stageH / 2;
-        var twluopan = egret.Tween.get(luopan);
         luopan.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
             launchTween();
         }, this);
@@ -362,12 +360,14 @@ var Main = (function (_super) {
         }, this);
         function p3launchTween() {
             /*** 本示例关键代码段开始 ***/
+            var funcChange = function () {
+                zijibg.alpha = 0.5;
+            };
             egret.Tween.get(ziji, {})
-                .to({ y: 40 }, 1000, egret.Ease.sineIn);
+                .to({ y: 40 }, 600, egret.Ease.sineIn);
             egret.Tween.get(textziji, {})
-                .to({ y: 190 }, 1200, egret.Ease.sineIn).to({ "alpha": 1 }, 600);
-            egret.Tween.get(zijibg, {}).to({ y: 150 }, 600)
-                .to({ "alpha": 1 }, 800, egret.Ease.sineIn);
+                .to({ y: 190 }, 500, egret.Ease.sineIn).to({ "alpha": 1 }, 1000);
+            egret.Tween.get(zijibg, { onChange: funcChange, onChangeObj: this }).to({ y: 150 }, 600);
         }
         var poem3 = new egret.TextField();
         p3Container.addChild(poem3);
@@ -378,7 +378,7 @@ var Main = (function (_super) {
         poem3.size = 24;
         poem3.strokeColor = 0x39a29e;
         poem3.stroke = 1;
-        poem3.x = stageW - poem3.width - 10;
+        poem3.x = stageW / 2 - poem3.width / 2;
         poem3.y = stageH - poem3.height - 10;
         //页面滑动功能
         this.scrollRect = new egret.Rectangle(0, 0, this.stage.stageWidth, 3 * stageH);
@@ -388,7 +388,6 @@ var Main = (function (_super) {
         var init_StagePointY = 0; //起始Stage点
         var MoveDistance = 0; //移动距离
         var mark = 0;
-        var currentpage = 1;
         this.addEventListener(egret.TouchEvent.TOUCH_BEGIN, startScroll, this); //监听事件1
         function startScroll(e) {
             if ((this.scrollRect.y % stageH) != 0) {
@@ -414,12 +413,10 @@ var Main = (function (_super) {
             if ((MoveDistance >= (stageH / 3)) && init_StagePointY != 2 * stageH && origin != 0) {
                 rect.y = init_StagePointY + stageH;
                 this.scrollRect = rect;
-                currentpage++;
             }
             else if ((MoveDistance <= (-stageH / 3)) && init_StagePointY != 0 && origin != 0) {
                 rect.y = init_StagePointY - stageH;
                 this.scrollRect = rect;
-                currentpage--;
             }
             else {
                 rect.y = init_StagePointY;
@@ -430,6 +427,8 @@ var Main = (function (_super) {
         //根据name关键字，异步获取一个json配置文件，name属性请参考resources/resource.json配置文件的内容。
         // Get asynchronously a json configuration file according to name keyword. As for the property of name please refer to the configuration file of resources/resource.json.
         RES.getResAsync("description_json", this.startAnimation, this);
+        var sound = RES.getRes("torinouta_mp3");
+        var channel = sound.play(0, -2);
     };
     /**
      * 根据name关键字创建一个Bitmap对象。name属性请参考resources/resource.json配置文件的内容。
